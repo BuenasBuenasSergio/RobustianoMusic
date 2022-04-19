@@ -4,16 +4,17 @@ Robustiano Music
 
 ## Descripción
 
-Robustiano Music es una aplicacion para poder escuchar musica de manera local estilo spotify.
+Robustiano Music es una aplicación para poder escuchar musica de manera local estilo Spotify.
 
-### Caracteristicas
+### Características
 
-* Usuarios estandar podran escuchar.
-* Los artistas podran subir contenido a sus paginas.
-* Posibilidad de buscar por Canción, Albúm, Artista, Pais, Genero Musical
-* Creacion de Listas de reproducción
+* Usuarios estándar podrán escuchar.
+* Los artistas podrán subir contenido a sus páginas.
+* Posibilidad de buscar por Canción, Álbum, Artista, País, Genero Musical
+* Creación de Listas de reproducción
 
 ## Instalación
+
 
 ### Requerimientos
 
@@ -22,8 +23,8 @@ Robustiano Music es una aplicacion para poder escuchar musica de manera local es
 
 ### Despliegue
 
-* Instalacion de Xammp. Link : https://www.apachefriends.org/es/index.html
+* Instalación de Xammp. Link : https://www.apachefriends.org/es/index.html
 
 ## Leyenda
 
-* *: Esta en pruebas actualmente
+* *: Está en pruebas/considerandose actualmente
