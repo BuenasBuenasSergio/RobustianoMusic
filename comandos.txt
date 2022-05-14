@@ -1,0 +1,13 @@
+Arrancar servidor -> php artisan serve
+Crear Controlador -> php artisan make:controller nombre
+Crear migracion base -> php artisan make:migration nombre
+Crear migracion tabla -> php artisan make:migration creat_nombre_table
+Migracion crear columna -> php artisan make:migration add_nombrecolumn_to_nombretable
+Migrar BD -> php artisan migrate
+Elminiar migracion -> php artisan migrate:rollback
+Elminar y crear todas las migracions -> php artisan migrate:fresh
+Crear modelo -> php artisan make:model NombreModelo -m
+es para crear registro desde los seeders->php artisan db:seed
+es para crear registro desde los seeders especifico->php artisan db:seed --class=NombreSeeder
+crear seeders -> php artisan make:seeder NombreSeeder
+para limpiar tabls y rellenarlas con las seeds:php artisan migrate:fresh --seed
