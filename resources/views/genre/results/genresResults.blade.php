@@ -1,5 +1,5 @@
 <a href="{{ route('genres.create') }}">
-    <div class="row">
+    <div class="row" id="resultados">
         @foreach ($genres as $genre)
             <div class="card  bg-black text-white col-6 col-sm-6 col-md-4 col-lg-3">
                 <a href="">

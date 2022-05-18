@@ -22,7 +22,9 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- Custom Script --}}
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    {{-- Fonts --}}
 </head>
 
 <body class="bg-black">
