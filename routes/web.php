@@ -58,6 +58,7 @@ Route::controller(AlbumController::class)->group(function () {
 Route::controller(GenreController::class)->group(function () {
     Route::get('/genres', 'genreList')->name('genres.list');
     Route::get('/genres/newGenre', 'create')->name('genres.create');
+    Route::post('/genres/save', 'save')->name('genres.save');
     Route::get('/genres/edit/{genero}', 'edit')->name('genres.edit');
     Route::get('/genres/delete/{genero}', 'delete')->name('genres.delete');
 });
