@@ -11,6 +11,6 @@ class Genres extends Model
 
     public function artist()
     {
-        return $this->belongsTo('App\Models\Artist');
+        return $this->hasMany(Artist::class);
     }
 }

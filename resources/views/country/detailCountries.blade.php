@@ -6,27 +6,19 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @foreach ($countries as $country)
-                {{-- <a href="{{route('countries.details', $country->id)}}">
-                 <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                    <img class="w-full" src="{{ asset($country->flag) }}" alt="Sunset in the mountains">
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-white  text-xl mb-2">{{ $country->name }}</div>
-                    </div>
-                </div> 
-            </a> --}}
+            @foreach ($artists as $artist)
                 <div class="card bg-black text-white col-6 col-sm-6 col-md-4 col-lg-3">
-                    <a href="{{ route('countries.details', $country->id) }}">
+                    {{-- <a href="{{ route('countries.details', $country->id) }}"> --}}
                         <!--LLeva a los artistas del pais-->
                         <div id="fondo">
-                            <img class="card-img " src="{{ asset($country->flag) }}">
+                            {{-- <img class="card-img " src="{{ asset($country->flag) }}"> --}}
                         </div>
                         <div class="card-img-overlay">
                             <div class="texto">
-                                <h5 class="card-title">{{ $country->name }}</h5>
+                                <h5 class="card-title">{{ $artist->name }}</h5>
                             </div>
                         </div>
-                    </a>
+                    {{-- </a> --}}
                 </div>
             @endforeach
         </div>

@@ -65,6 +65,7 @@ Route::controller(GenreController::class)->group(function () {
 
 Route::controller(CountryController::class)->group(function () {
     Route::get('/countries', 'countryList')->name('countries.list');
+    Route::get('/countries/{country}', 'details')->name('countries.details');
     Route::get('/countries/newCountry', 'create')->name('countries.create');
     Route::post('/countries/save', 'save')->name('countries.save');
     Route::get('/countries/edit/{pais}', 'edit')->name('countries.edit');
