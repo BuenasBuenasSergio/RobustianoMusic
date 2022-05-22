@@ -43,7 +43,7 @@ class CountryController extends Controller
     public function details($country)
     {
         //seleccionar artistas de un pais
-        $artists = Artist::where('country_id', $country)->get();
+        $artists = Artist::where('country_id', $country)->paginate(15);
         $country = Country::find($country);
         return view('country.detailCountries', compact('artists', 'country'));
     }

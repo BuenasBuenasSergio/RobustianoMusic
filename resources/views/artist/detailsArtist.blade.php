@@ -1,0 +1,88 @@
+@extends('layout.base')
+
+@section('title', 'Detalles de' . $artist->name)
+@section('encabezado', 'Detalles de ' . $artist->name)
+
+@section('content')
+<div class="container">
+    <div class="row" style="align-items: center;">
+      <div class="card bg-black text-white">
+        <img src="{{ asset($artist->image_banner) }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="font-bold text-2xl mb-2 text-white">{{$artist->name}}</h5>
+          <p class="card-text"><strong>Debut:</strong> {{$artist->debutYear}}</p>
+          <p class="card-text"><strong>Generos:</strong> {{$genre->name}}</p>
+          <p class="card-text"><strong>Pais:</strong> {{$country->name}}</p>
+          <p class="card-text"><strong>Biografia:</strong> {{$artist->bio}}</p>
+          {{-- {% if user.is_staff%} --}}
+          <p> <strong>Acciones:</strong>
+            <a href=""><button type="button" class="btn btn-success">Crear Album</button></a>
+            <a href=""><button type="button" class="btn btn-success">Modificar Artista</button></a>
+            <a href=""><button type="button" class="btn btn-danger">Eliminar Artista</button></a>
+          </p>
+          {{-- {% endif %} --}}
+        </div>
+      </div>
+      {{-- <!-- <div class="card bg-black text-white col-6 col-sm-6 col-md-4 col-lg-3" >
+        <img class="card-img" src="{{artist.get_image_url}}">
+            <div class="card-img-overlay">
+                <div class="texto">
+                    <h5 class="card-title">{{artist.name}}</h5>
+                    <h5 class="card-title">{{artist.debutYear}}</h5>
+                    <h5 class="card-title">{{artist.country}}</h5>
+                </div>
+            </div>
+      </div> --> --}}
+    </div>
+  </div>
+
+  &nbsp;
+  
+  <div class="container">
+    <table class="table table-hover table-dark artist_table" style="color: white;" style="width: 100%;">
+      <thead>
+        <th colspan="6" style="text-align: center;">Canciones Mas escuchadas</th>
+        <tr>
+          <td>Titulo</td>
+          <td>Artista</td>
+          <td>Colaborador</td>
+          <td>Album</td>
+          <td>Visitas</td>
+          <td></td>
+        </tr>
+      </thead>
+        {{-- {% for song in song_list %}
+          
+          <tr>
+            <td>{{song.title}}</td>
+            <td>{{song.artist}}</td>
+            <td>{{song.show_collab}}</td>
+            <td>{{song.album}}</td>
+            <td>{{song.views}}</a></td>
+            <td><audio controls src="{{ song.get_song_url }}" onclick='sumarVis()'></audio></td>
+          </tr>
+        {% endfor %} --}}
+    </table>
+  </div>
+
+  &nbsp;
+
+  <div class="container">
+    <h2 class="text-white text-3xl font-bold"> Albumes</h1>
+    <div class="row">
+      {{-- {% for album in album_list %}
+        <div class="card bg-black text-white col-6 col-sm-6 col-md-4 col-lg-3" >
+          <a href="{% url 'albumDetail' album.id %}">
+            <img class="card-img" src="{{album.get_image_url}}">
+            <div class="card-img-overlay">
+                <div  class="texto">
+                    <h5 class="card-title">{{album.title}}</h5>
+                </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %} --}}
+  </div>
+</div>
+
+@endsection

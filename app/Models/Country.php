@@ -11,6 +11,6 @@ class Country extends Model
 
     public function artist()
     {
-        return $this->hasOne(Artist::class);
+        return $this->hasOne(Artist::class , 'country_id');
     }
 }

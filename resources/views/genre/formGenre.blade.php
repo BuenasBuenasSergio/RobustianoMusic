@@ -16,7 +16,7 @@
                 <input type="file" name="genero[]" class="form-control" id="genero" placeholder="Seleciona Archivo" multiple>
             </div>
             <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white-300 font-semibold hover:text-white py-2 px-4 border-green-500 rounded">Enviar</button>
             </div>
         </form>
     </div>

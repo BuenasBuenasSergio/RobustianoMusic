@@ -18,6 +18,6 @@ class Artist extends Model
     public function country()
     {
         //relation 1:1
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class, 'id');
     }
 }
