@@ -22,7 +22,7 @@
             <div class="row" id="resultados">
                 @foreach ($genres as $genre)
                     <div class="card  bg-black text-white col-6 col-sm-6 col-md-4 col-lg-3">
-                        <a href="">
+                        <a href="{{ route('genres.details', $genre->id) }}">
                             <!--LLeva a los artistas del pais-->
                             <div id="fondo">
                                 <img class="card-img " src="{{ asset($genre->image) }}">
@@ -36,10 +36,12 @@
                     </div>
                 @endforeach
             </div>
+            <button
+                class="bg-green-500 hover:bg-green-600 text-white-300 font-semibold hover:text-white py-2 px-4 border-green-500 rounded">
+                Crear Genero
+            </button>
+        </a>
     </div>
-    <button
-        class="bg-green-500 hover:bg-green-600 text-white-300 font-semibold hover:text-white py-2 px-4 border-green-500 rounded">
-        Crear Genero
-    </button></a>
+
 
 @endsection

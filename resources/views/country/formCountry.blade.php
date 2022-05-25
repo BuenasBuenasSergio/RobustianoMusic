@@ -1,7 +1,7 @@
 @extends('layout.base')
 
-@section('title', 'Nueva Cancion')
-@section('encabezado', 'Nueva Cancion')
+@section('title', 'Nuevo País')
+@section('encabezado', 'Nuevo País')
 
 @section('novedades')
 

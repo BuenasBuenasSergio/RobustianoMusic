@@ -11,12 +11,12 @@
         <div class="card-body">
           <h5 class="font-bold text-2xl mb-2 text-white">{{$artist->name}}</h5>
           <p class="card-text"><strong>Debut:</strong> {{$artist->debutYear}}</p>
-          <p class="card-text"><strong>Generos:</strong> {{$genre->name}}</p>
+          <p class="card-text"><strong>Generos:</strong><a href="{{route('genres.details', $genre->id)}}"> {{$genre->name}}</p></a>
           <p class="card-text"><strong>Pais:</strong> {{$country->name}}</p>
           <p class="card-text"><strong>Biografia:</strong> {{$artist->bio}}</p>
           {{-- {% if user.is_staff%} --}}
           <p> <strong>Acciones:</strong>
-            <a href=""><button type="button" class="btn btn-success">Crear Album</button></a>
+            <a href="{{route('albums.create', $artist->id)}}"><button type="button" class="btn btn-success">Crear Album</button></a>
             <a href=""><button type="button" class="btn btn-success">Modificar Artista</button></a>
             <a href=""><button type="button" class="btn btn-danger">Eliminar Artista</button></a>
           </p>
@@ -70,18 +70,18 @@
   <div class="container">
     <h2 class="text-white text-3xl font-bold"> Albumes</h1>
     <div class="row">
-      {{-- {% for album in album_list %}
+      @foreach ($albums as $album)
         <div class="card bg-black text-white col-6 col-sm-6 col-md-4 col-lg-3" >
-          <a href="{% url 'albumDetail' album.id %}">
-            <img class="card-img" src="{{album.get_image_url}}">
+          <a href="{{route('album.details', $album->id)}}">
+            <img class="card-img" src="{{asset($album->image)}}">
             <div class="card-img-overlay">
                 <div  class="texto">
-                    <h5 class="card-title">{{album.title}}</h5>
+                    <h5 class="card-title">{{$album->title}}</h5>
                 </div>
             </div>
           </a>
         </div>
-        {% endfor %} --}}
+      @endforeach
   </div>
 </div>
 

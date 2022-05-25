@@ -45,14 +45,16 @@ Route::controller(ArtistController::class)->group(function () {
     Route::get('/artists', 'artistList')->name('artists.list');
     Route::get('/artists/newArtist', 'create')->name('artists.create');
     Route::post('/artists/save', 'save')->name('artists.save');
-    route::get('/artists/{id}', 'details')->name('artist.details');
+    route::get('/artists/details/{id}', 'details')->name('artist.details');
     Route::get('/artists/edit/{artista}', 'edit')->name('artists.edit');
     Route::get('/artists/delete/{artista}', 'delete')->name('artists.delete');
 });
 
 Route::controller(AlbumController::class)->group(function () {
     Route::get('/albums', 'albumList')->name('albums.list');
-    Route::get('/albums/newAlbum', 'create')->name('albums.create');
+    Route::get('/albums/newAlbum/{artist_id}', 'create')->name('albums.create');
+    Route::post('/albums/save', 'save')->name('albums.save');
+    Route::get('/albums/details/{id}', 'details')->name('album.details');
     Route::get('/albums/edit/{album}', 'edit')->name('albums.edit');
     Route::get('/albums/delete/{album}', 'delete')->name('albums.delete');
 });
@@ -60,6 +62,7 @@ Route::controller(AlbumController::class)->group(function () {
 Route::controller(GenreController::class)->group(function () {
     Route::get('/genres', 'genreList')->name('genres.list');
     Route::get('/genres/newGenre', 'create')->name('genres.create');
+    Route::get('/genres/details/{id}', 'details')->name('genres.details');
     Route::post('/genres/save', 'save')->name('genres.save');
     Route::get('/genres/edit/{genero}', 'edit')->name('genres.edit');
     Route::get('/genres/delete/{genero}', 'delete')->name('genres.delete');
