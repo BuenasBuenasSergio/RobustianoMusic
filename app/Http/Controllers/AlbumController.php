@@ -43,15 +43,15 @@ class AlbumController extends Controller
         $album->image = 'storage/images/albums/'.$artist->name.'/'.$album->title.'/cover/' . $request->image->getClientOriginalName(); //guardar la ruta de la imagen
         $album->save();
 
-        return redirect()->route('artist.details', $artist->id)->with('success', 'Album creado correctamente');
+        return redirect()->route('songs.create')->with('success', 'Album creado correctamente');
     }
 
     public function details($id)
     {
         $album = Album::find($id);
         $artist = Artist::find($album->artist_id);//
-        //$song = Song::where('album_id', $id)->get()->all();
-        return view('album.detailsAlbum', compact('album', 'artist'));
+        $songs = Song::limit(5)->where('album_id', $id)->get()->sortBy('views' ,'desc');
+        return view('album.detailsAlbum', compact('album', 'artist', 'songs'));
     }
 
     public function edit($album)

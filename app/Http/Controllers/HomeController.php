@@ -12,7 +12,11 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $songs = Song::paginate();
+        $songs = Song::join('artists', 'songs.artist_id', '=', 'artists.id')
+            ->select('*')
+            ->limit(4)
+            ->get()
+            ;
         $artists = Artist::limit(4)->get();
         $albums = Album::limit(4)->get();
         return view('index', compact('songs', 'artists', 'albums'));
