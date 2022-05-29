@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
+        $user = auth()->user();
         $songs = Song::join('artists', 'songs.artist_id', '=', 'artists.id')
             ->select('*')
             ->limit(4)
@@ -19,6 +20,11 @@ class HomeController extends Controller
             ;
         $artists = Artist::limit(4)->get();
         $albums = Album::limit(4)->get();
-        return view('index', compact('songs', 'artists', 'albums'));
+        return view('index', compact('songs', 'artists', 'albums' , 'user'));
+    }
+
+    public function login(){
+
+        return view('auth.login');
     }
 }

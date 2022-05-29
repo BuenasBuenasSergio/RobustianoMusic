@@ -8,6 +8,7 @@
 @endsection
 @section('content')
     <h2 class="text-white text-2xl font-bold">Ultimas Canciones</h2>
+    <h2 class="text-white text-2xl font-bold">{{$user->name}}</h2>
     <div class="container">
         <div class="row">
             @foreach ($songs as $song)

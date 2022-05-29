@@ -8,6 +8,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\CountryController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,3 +94,7 @@ Route::controller(CountryController::class)->group(function () {
     
 // });
 
+
+Auth::routes();
+
+Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
