@@ -50,7 +50,7 @@ class AlbumController extends Controller
     {
         $album = Album::find($id);
         $artist = Artist::find($album->artist_id);//
-        $songs = Song::limit(5)->where('album_id', $id)->get()->sortBy('views' ,'desc');
+        $songs = Song::limit(5)->where('album_id', $id)->orderBy('id', 'asc')->get();
         return view('album.detailsAlbum', compact('album', 'artist', 'songs'));
     }
 
