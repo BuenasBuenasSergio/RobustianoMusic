@@ -12,6 +12,12 @@ class Artist extends Model
 
     public function genre()
     {
-        return $this->belongsTo('App\Models\Genres');
+        return $this->belongsTo(Genre::class);
+    }
+
+    public function country()
+    {
+        //relation 1:1
+        return $this->belongsTo(Country::class, 'id');
     }
 }

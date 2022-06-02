@@ -44,6 +44,8 @@ Route::controller(SongsController::class)->group(function () {
 Route::controller(ArtistController::class)->group(function () {
     Route::get('/artists', 'artistList')->name('artists.list');
     Route::get('/artists/newArtist', 'create')->name('artists.create');
+    Route::post('/artists/save', 'save')->name('artists.save');
+    route::get('/artists/{id}', 'details')->name('artist.details');
     Route::get('/artists/edit/{artista}', 'edit')->name('artists.edit');
     Route::get('/artists/delete/{artista}', 'delete')->name('artists.delete');
 });
@@ -66,6 +68,7 @@ Route::controller(GenreController::class)->group(function () {
 Route::controller(CountryController::class)->group(function () {
     Route::get('/countries', 'countryList')->name('countries.list');
     Route::get('/countries/newCountry', 'create')->name('countries.create');
+    Route::get('/countries/{country}', 'details')->name('countries.details');
     Route::post('/countries/save', 'save')->name('countries.save');
     Route::get('/countries/edit/{pais}', 'edit')->name('countries.edit');
     Route::get('/countries/delete/{pais}', 'delete')->name('countries.delete');

@@ -18,12 +18,19 @@ return new class extends Migration
             $table->string('name');
             $table->integer('debutYear');
             $table->unsignedBigInteger('genre_id');
-
-            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
+            $table->unsignedBigInteger('country_id');
             $table->longText('bio');
             $table->string('image');
             $table->string('image_banner');
+
             $table->timestamps();
+
+            $table->foreign('genre_id')->references('id')
+            ->on('genres')->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('country_id')->references('id')
+            ->on('countries')->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 

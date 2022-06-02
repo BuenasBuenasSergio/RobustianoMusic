@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artist;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -37,6 +38,14 @@ class CountryController extends Controller
         }
 
         return redirect()->route('countries.list');
+    }
+
+    public function details($country)
+    {
+        //seleccionar artistas de un pais
+        $artists = Artist::where('country_id', $country)->paginate(15);
+        $country = Country::find($country);
+        return view('country.detailCountries', compact('artists', 'country'));
     }
 
     public function edit($country)

@@ -34,7 +34,7 @@ class GenreController extends Controller
             $country->image = 'storage/genres/images/' . $image->getClientOriginalName(); //guardar la ruta de la imagen
             $country->save(); //guardar el pais
         }
-        return view('genre.listGenre');
+        return redirect()->route('genres.list');
     }
 
     public function edit($genre)

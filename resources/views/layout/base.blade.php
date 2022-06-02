@@ -37,11 +37,7 @@
     <!-- CONTENT -->
     @yield('content')
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-dark">
-        <div class="container">
-            <span class="text-muted">&copy; 2022 Robustiano Music</span>
-        </div>
-    </footer>
+    
 </body>
 {{-- scrips --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
