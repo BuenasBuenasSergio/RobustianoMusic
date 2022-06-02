@@ -1,49 +1,46 @@
 @extends('layout.base')
 
-@section('title', 'Nueva Cancion')
-@section('encabezado', 'Nueva Cancion')
+@section('title', 'Nuevas Canciones para Album' . $album->title)
+@section('encabezado', 'Nuevas Canciones para Album' . $album->title)
 
 @section('novedades')
 
-@endsection 
+@endsection
 @section('content')
-<div class="container">
-    <div class="row text-white" >
-        <form action="{{route('songs.save')}}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="Title">
-            </div>
-            <div class="form-group">
-                <label for="artist">Artist</label>
-                <input type="text" name="artist" class="form-control" id="artist" placeholder="Artist">
-            </div>
-            <div class="form-group">
-                <label for="colartist">colartist</label>
-                <input type="text" name="colartist" class="form-control" id="colartist" placeholder="colartist">
-            </div>
-            <div class="form-group">
-                <label for="album">Album</label>
-                <input type="text" name="album" class="form-control" id="album" placeholder="Album">
-            </div>
-            <div class="form-group">
-                <label for="genre">Genre</label>
-                <input type="text" name="genre" class="form-control" id="genre" placeholder="Genre">
-            </div>
-            <div class="form-group">
-                <label for="year">Year</label>
-                <input type="text" name="year" class="form-control" id="year" placeholder="Year">
-            </div>
-            <div class="form-group">
-                <label for="file">file</label>
-                <input type="file" name="file" class="form-control" id="file" placeholder="file">
-            </div>
-            <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+    <div class="container">
+        <div class="row text-white">
+            <form action="{{ route('songs.save') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                {{-- ARTISTA --}}
+                <input type="number" name="artist" class="form-control" id="artist" value="{{ $artist->id }}"
+                    style="display: none">
+                {{-- ALBUM --}}
+                <input type="number" name="album" class="form-control" id="album" value="{{ $album->id }}"
+                    style="display: none">
+                <input type="number" name="year" class="form-control" id="year" value="{{ $album->release_year }}"
+                    style="display: none">
+
+                <input type="text" name="caratula" class="form-control" id="caratula" value="{{ $album->image }}"
+                    style="display: none">
+                <div class="form-group">
+                    <div class="form-row col-8">
+                        <label for="file">Canciones</label>
+                        <input type="file" name="canciones[]" class="form-control" id="canciones" placeholder="canciones"
+                            multiple>
+                    </div>
+                    <div class="form-row col-4">
+                        <p class="text-xl text-white">Subir archivos con el nombre de la cancion</p>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="form-row col-8">
+                        <button type="submit" class="btn btn-success form-control">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 @endsection

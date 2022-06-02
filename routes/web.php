@@ -33,7 +33,7 @@ Route::get('/', HomeController::class);
 //Rutas Canciones
 Route::controller(SongsController::class)->group(function () {
     Route::get('/songs', 'songList')->name('songs.list');
-    Route::get('/songs/newSong', 'create')->name('songs.create');
+    Route::get('/songs/newSong/{artista}/{album}', 'create')->name('songs.create');
     Route::post('/songs/save', 'save')->name('songs.save');
     Route::get('/songs/edit/{song}', 'edit')->name('songs.edit');
     Route::put('/songs/update/{song}', 'update')->name('songs.update');

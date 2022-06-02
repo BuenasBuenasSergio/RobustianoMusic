@@ -2,33 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
+use App\Models\Artist;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SongsController extends Controller
 {
     public function songList(){
-        return view('songs.listSongs');
+        $songs = Song::join('artists', 'songs.artist_id', '=', 'artists.id')
+            ->select('*')
+            ->paginate(12)
+            ->sortBy('title');
+
+        return view('songs.listSongs' , compact('songs'));
     }
     
-    public function create(){
-        return view('songs.newSong');
+    public function create($album, $artista){
+        $artist = Artist::find($artista);
+        $album = Album::find($album);
+        return view('songs.newSong' , compact('artist', 'album'));
     }
 
     public function save(Request $request){
-        $song = new Song();
-        $song->title = $request->input('title');
-        $song->artist = $request->input('artist');
-        $song->collaboratorArtist = $request->input('colartist');
-        $song->album = $request->input('album');
-        $song->genre = $request->input('genre');
-        $song->year = $request->input('year');
-        $song->file = $request->input('file');
-        $song->views = 0;
- 
-        // return redirect('/song/list');
-        $song->save();
-        return redirect()->route('songs.list');
+
+        $artista = Artist::find($request->artist);
+        $album = Album::find($request->album);
+
+        foreach ($request->file('canciones') as  $canciones) {
+            //falta hacer el link 
+            $song = new Song(); //declaracion de Pais
+
+            $ogName = $canciones->getClientOriginalName(); //nombre original
+            $busqueda = '.';
+            $pos = strpos($ogName, $busqueda);
+            $name = substr($ogName, 0, $pos);
+            $song->title = $name; //recogida del nombre del archivo
+            $song->artist_id = $request->artist;
+            $song->album_id = $request->album;
+            $song->caratula = $request->caratula;
+            $song->year = $request->year;
+            $song->views = 0;
+            //upload canciones
+            Storage::disk('public')->put('/songs/'. $artista->name . '/' . $album->title .'/' . $canciones->getClientOriginalName(), file_get_contents($canciones)); //guardado del archivo
+            //ruta del archivo
+            $song->file = 'storage/songs/'. $artista->name . '/' . $album->title .'/' . $canciones->getClientOriginalName(); //guardar la ruta de la cancionesn
+            $song->save(); //guardar el pais
+        }
+
+        return redirect()->route('album.details', $album->id);
     }
 
     public function update(Song $song , Request $request){
