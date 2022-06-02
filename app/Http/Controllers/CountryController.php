@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CountryController extends Controller
 {
     public function countryList()
     {
-        $countries = Country::all();
-        return view('country.listCountry', compact('countries'));
+        $busqueda = '';
+        if (Auth::check()) {
+            $countries = Country::orderBy('name','asc')->paginate(8);
+            return view('country.listCountry', compact('countries', 'busqueda'));
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function create()
@@ -22,6 +28,10 @@ class CountryController extends Controller
 
     public function save(Request $request)
     {
+        //validaciones
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
         foreach ($request->file('image') as  $image) {
             //falta hacer el link 
             $country = new Country(); //declaracion de Pais
@@ -46,6 +56,16 @@ class CountryController extends Controller
         $artists = Artist::where('country_id', $country)->paginate(15);
         $country = Country::find($country);
         return view('country.detailCountries', compact('artists', 'country'));
+    }
+
+    public function search(Request $request){
+        $busqueda = $request->input('q');
+        if (Auth::check()) {
+            $countries = Country::where('name', 'like', '%' . $busqueda . '%')->orderBy('name','asc')->paginate(8);
+            return view('country.listCountry', compact('countries', 'busqueda'));
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function edit($country)

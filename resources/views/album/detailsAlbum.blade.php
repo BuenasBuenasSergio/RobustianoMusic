@@ -14,7 +14,7 @@
         </div>
         <table class="table table-hover table-dark album_table" style="color: white;" style="width: 100%; opacity: 0.3;">
             <thead>
-                {{-- {% if user.is_staff%} --}}
+                @if (Auth::user()->artist_id == $artist->id)
                 <th colspan="5">
                     <p class="text-white">Acciones:
                         <a href="{{ route('songs.create', [$album->id, $album->artist_id]) }}"><button type="button"
@@ -22,14 +22,16 @@
                             <a href=""><button type="button" class="btn btn-success">Modificar Album</button></a>
                             <a href=""><button type="button" class="btn btn-danger">Eliminar Album</button></a>
                 </th>
-                {{-- {% endif %} --}}
+                @endif
+                
                 <tr>
                     <td>Titulo</td>
                     <td>Artista</td>
                     <td>Visitas</td>
-                    {{-- {% if user.is_staff%} --}}
+                    <td>Reproduccion</td>
+                    @if (Auth::user()->artist_id == $artist->id)
                     <td>Modificar/Eliminar</td>
-                    {{-- {% endif %} --}}
+                    @endif
                 </tr>
             </thead>
             @foreach ($songs as $song)
@@ -38,12 +40,12 @@
                     <td>{{ $artist->name }}</td>
                     <td>{{ $song->views }}</td>
                     <td><audio controls src="{{ asset($song->file) }}"></audio> </td>
-                    {{-- {% if user.is_staff%} --}}
+                    @if (Auth::user()->artist_id == $artist->id)
                     <td>
                         <a href="" <i class="bi bi-pencil-square"></i>
                             <a href=""><i class="bi bi-trash-fill"></i>
                     </td>
-                    {{-- {% endif %} --}}
+                    @endif
                 </tr>
             @endforeach
         </table>
