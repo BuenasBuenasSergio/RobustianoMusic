@@ -1,7 +1,7 @@
 @extends('layout.base')
 
-@section('title', 'Nuevas Canciones para Album' . $album->title)
-@section('encabezado', 'Nuevas Canciones para Album' . $album->title)
+@section('title', 'Nuevas Canciones para Album' . $album->title  ) 
+@section('encabezado', 'Nuevas Canciones para Album' . $album->title )
 
 @section('novedades')
 

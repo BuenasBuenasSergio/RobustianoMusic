@@ -34,13 +34,13 @@ class ArtistController extends Controller
 
     public function save(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'debut' => 'required',
-            'bio' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        //     'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        //     'debut' => 'required',
+        //     'bio' => 'required',
+        // ]);
 
         $artist = new Artist();
         $artist->name = $request->input('name');

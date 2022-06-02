@@ -17,7 +17,7 @@
                 @if (Auth::user()->artist_id == $artist->id)
                 <th colspan="5">
                     <p class="text-white">Acciones:
-                        <a href="{{ route('songs.create', [$album->id, $album->artist_id]) }}"><button type="button"
+                        <a href="{{ route('songs.create', [$album->artist_id, $album->id]) }}"><button type="button"
                                 class="btn btn-success">Añadir Cancion</button>
                             <a href=""><button type="button" class="btn btn-success">Modificar Album</button></a>
                             <a href=""><button type="button" class="btn btn-danger">Eliminar Album</button></a>
