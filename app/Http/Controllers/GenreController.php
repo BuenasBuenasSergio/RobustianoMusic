@@ -5,23 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Models\Genres;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class GenreController extends Controller
 {
     public function genreList()
     {
-        $genres = Genres::all();
-        return view('genre.listGenre', compact('genres'));
+        if (Auth::check()) {
+
+            $genres = Genres::orderBy('name' ,'asc')->paginate(8);
+
+            return view('genre.listGenre', compact('genres'));
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function create()
     {
-        return view('genre.formGenre');
+        if (Auth::check()) {
+            return view('genre.formGenre');
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function save(Request $request)
     {
+        $request->validate([
+
+            'genero' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
         foreach ($request->file('genero') as  $image) {
             $country = new Genres(); //declaracion de Pais
             $ogName = $image->getClientOriginalName(); //nombre original
@@ -40,11 +55,28 @@ class GenreController extends Controller
 
     public function details($id)
     {
-        $genre = Genres::find($id);
-        $artists = Artist::where('genre_id', $id)->paginate(15);
-        return view('genre.detailGenre', compact('genre', 'artists'));
+        if (Auth::check()) {
+            $genre = Genres::find($id);
+            $artists = Artist::where('genre_id', $id)->paginate(15);
+            return view('genre.detailGenre', compact('genre', 'artists'));
+        } else {
+            return redirect('/login');
+        }
     }
 
+    public function genreSearch(Request $request)
+    {
+
+        if (Auth::check()) {
+            $busqueda = $request->input('q');
+            $genres = Genres::where('name', 'like', '%' . $busqueda . '%')
+                ->orderBy('name', 'asc')
+                ->paginate(8);
+            return view('genre.listGenre', compact('genres', 'busqueda'));
+        } else {
+            return redirect('/login');
+        }
+    }
     public function edit($genre)
     {
         return view('genre.editGenre', compact('genre'));

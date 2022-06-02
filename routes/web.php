@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', HomeController::class);
+
 
 
 // Route::get('cursos', [CursoController::class, 'index']);
@@ -37,6 +37,7 @@ Route::controller(SongsController::class)->group(function () {
     Route::get('/songs/newSong/{artista}/{album}', 'create')->name('songs.create');
     Route::post('/songs/save', 'save')->name('songs.save');
     Route::get('/songs/edit/{song}', 'edit')->name('songs.edit');
+    Route::get('/songs/search/{str?}', 'songSearch')->name('songs.search');
     Route::put('/songs/update/{song}', 'update')->name('songs.update');
     Route::get('/songs/delete/{song}', 'delete')->name('songs.delete');
     
@@ -47,6 +48,7 @@ Route::controller(ArtistController::class)->group(function () {
     Route::get('/artists/newArtist', 'create')->name('artists.create');
     Route::post('/artists/save', 'save')->name('artists.save');
     route::get('/artists/details/{id}', 'details')->name('artist.details');
+    route::get('/artists/search/{str?}', 'search')->name('artist.search');
     Route::get('/artists/edit/{artista}', 'edit')->name('artists.edit');
     Route::get('/artists/delete/{artista}', 'delete')->name('artists.delete');
 });
@@ -56,6 +58,7 @@ Route::controller(AlbumController::class)->group(function () {
     Route::get('/albums/newAlbum/{artist_id}', 'create')->name('albums.create');
     Route::post('/albums/save', 'save')->name('albums.save');
     Route::get('/albums/details/{id}', 'details')->name('album.details');
+    Route::get('/albums/search/{str?}', 'search')->name('album.search');
     Route::get('/albums/edit/{album}', 'edit')->name('albums.edit');
     Route::get('/albums/delete/{album}', 'delete')->name('albums.delete');
 });
@@ -64,6 +67,7 @@ Route::controller(GenreController::class)->group(function () {
     Route::get('/genres', 'genreList')->name('genres.list');
     Route::get('/genres/newGenre', 'create')->name('genres.create');
     Route::get('/genres/details/{id}', 'details')->name('genres.details');
+    Route::get('/genres/search/{str?}', 'genreSearch')->name('genres.search');
     Route::post('/genres/save', 'save')->name('genres.save');
     Route::get('/genres/edit/{genero}', 'edit')->name('genres.edit');
     Route::get('/genres/delete/{genero}', 'delete')->name('genres.delete');
@@ -72,8 +76,9 @@ Route::controller(GenreController::class)->group(function () {
 Route::controller(CountryController::class)->group(function () {
     Route::get('/countries', 'countryList')->name('countries.list');
     Route::get('/countries/newCountry', 'create')->name('countries.create');
-    Route::get('/countries/{country}', 'details')->name('countries.details');
+    Route::get('/countries/search/{str?}', 'search')->name('countries.search');
     Route::post('/countries/save', 'save')->name('countries.save');
+    Route::get('/countries/{country}', 'details')->name('countries.details');
     Route::get('/countries/edit/{pais}', 'edit')->name('countries.edit');
     Route::get('/countries/delete/{pais}', 'delete')->name('countries.delete');
 });
@@ -98,3 +103,5 @@ Route::controller(CountryController::class)->group(function () {
 Auth::routes();
 
 Route::get('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
+
+Route::get('/{busqueda?}', HomeController::class)->name('index.home');

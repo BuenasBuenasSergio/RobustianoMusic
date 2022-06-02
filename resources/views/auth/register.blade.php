@@ -1,11 +1,13 @@
-@extends('layouts.app')
+@extends('layout.base')
+@section('title', 'Registrar Usuario')
+
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="card bg-black text-white">
+                <div class="card-header "style="background-color: #00bb2d">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -47,7 +49,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong class="text-white">{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -63,7 +65,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn inline-block px-6 py-2 border-2 border-green-600 text-white font-medium text-xs leading-tight uppercase rounded hover:bg-green-700 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
                                     {{ __('Register') }}
                                 </button>
                             </div>

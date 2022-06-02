@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'artist_id',
     ];
 
     /**
@@ -53,5 +54,8 @@ class User extends Authenticatable
             set: fn($value) => ucwords($value),
 
         );
+    }
+    public function artists(){
+        return $this->belongsTo(Artist::class);
     }
 }

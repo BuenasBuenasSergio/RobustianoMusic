@@ -22,6 +22,7 @@ a{
     text-decoration: none;
     color: white;
     font-weight: bold;
+    
 }
 
 a:hover{
@@ -40,7 +41,24 @@ a:hover{
     width: 350px;
     height: 250px;
 }
-
+h5.card-title{
+    color: white;
+    font-weight: bold;
+}
+p.card-text{
+    color: white;
+    text-decoration: none;
+}
+a p.card-text{
+    color: white;
+    text-decoration: none;
+}
+a p.card-text:hover{
+    color: #00bb2d;
+}
+div.card a div.texto h5.card-title:hover{
+    color: #00bb2d;
+}
 .artist_table tr td{
     width: 16.66%;
 }
@@ -67,17 +85,15 @@ a:hover{
 }
 
 .page-item.active .page-link{
-    background-color: green;
-    border: grey;
-    color: white
+   background-color: #00bb2d;
 }
 
 
 .page-item.disabled{
-    background-color: black;
+    background-color: grey;
     border: grey;
     color: grey
-}
+}  
 
 .footer {
     position: fixed;
