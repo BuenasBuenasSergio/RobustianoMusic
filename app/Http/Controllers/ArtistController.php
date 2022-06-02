@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Country;
 use App\Models\Genres;
@@ -53,7 +54,8 @@ class ArtistController extends Controller
         $artist = Artist::find($id);
         $country = Country::find($artist->country_id);
         $genre = Genres::find($artist->genre_id);
-        return view('artist.detailsArtist', compact('artist' , 'country', 'genre'));
+        $albums = Album::where('artist_id', $id)->get()->all();
+        return view('artist.detailsArtist', compact('artist' , 'country', 'genre', 'albums'));
     }
 
     public function edit($artist){

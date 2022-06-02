@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artist;
 use App\Models\Genres;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -35,6 +36,13 @@ class GenreController extends Controller
             $country->save(); //guardar el pais
         }
         return redirect()->route('genres.list');
+    }
+
+    public function details($id)
+    {
+        $genre = Genres::find($id);
+        $artists = Artist::where('genre_id', $id)->paginate(15);
+        return view('genre.detailGenre', compact('genre', 'artists'));
     }
 
     public function edit($genre)

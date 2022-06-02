@@ -20,4 +20,10 @@ class Artist extends Model
         //relation 1:1
         return $this->belongsTo(Country::class, 'id');
     }
+
+    public function albums()
+    {
+        //relation 1:n
+        return $this->hasMany(Album::class);
+    }
 }
